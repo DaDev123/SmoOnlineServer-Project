@@ -16,15 +16,16 @@
         <!-- Buttons Section -->
         <div class="button-section">
             <div class="button-container">
-                <p class="button-label">Placeholder</p>
+                <p class="button-label">Mushroom</p>
                 <div class="button">
                     <img src="icon1.png" alt="Button 1" />
                 </div>
             </div>
             <div class="button-container">
-                <p class="button-label">Placeholder</p>
-                <div class="button">
-                    <img src="icon2.png" alt="Button 2" />
+                <p class="button-label">Ban</p>
+                <div class="button"
+onclick="window.location.href='ban.html';">
+                    <img src="sendall/ban.png" alt="Button 2" />
                 </div>
             </div>
             <div class="button-container">
@@ -38,9 +39,54 @@
         <!-- Console Section -->
         <div class="console-section">
             <p>Console</p>
-            <div class="console-box"></div>
+            <div class="console-box" id="consoleBox"></div>
         </div>
     </div>
+
+    <script>
+        // Function to log messages to the console box and sync with localStorage
+        function logToConsole(message) {
+            const consoleBox = document.getElementById("consoleBox");
+
+            // Create a new div element for each log entry
+            const newLog = document.createElement("div");
+            newLog.textContent = message;
+            consoleBox.appendChild(newLog);
+
+            // Get current logs from localStorage
+            let consoleLogs = JSON.parse(localStorage.getItem("consoleLogs")) || [];
+
+            // Add the new log message to the array
+            consoleLogs.push(message);
+
+            // Update the console logs in localStorage
+            localStorage.setItem("consoleLogs", JSON.stringify(consoleLogs));
+
+            // Automatically scroll to the bottom of the console
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
+        // Function to load the stored logs into the console
+        function loadConsoleLogs() {
+            const consoleBox = document.getElementById("consoleBox");
+
+            // Get logs from localStorage
+            let consoleLogs = JSON.parse(localStorage.getItem("consoleLogs")) || [];
+
+            // Add each log entry to the console box
+            consoleLogs.forEach(log => {
+                const newLog = document.createElement("div");
+                newLog.textContent = log;
+                consoleBox.appendChild(newLog);
+            });
+
+            // Automatically scroll to the bottom of the console
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
+        // Call loadConsoleLogs on page load to display previous logs
+        window.onload = loadConsoleLogs;
+    </script>
 </body>
 </html>
 

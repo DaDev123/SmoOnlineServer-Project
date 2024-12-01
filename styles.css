@@ -61,16 +61,9 @@ body {
 
 /* Console Section */
 .console-section {
-    margin-top: 40px;
-    text-align: left;
-    width: 100%;
-}
-
-.console-section p {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #ffffff;
+    margin-top: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
 }
 
 .console-box {
@@ -84,20 +77,15 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     color: #ffffff;
     font-family: "Courier New", Courier, monospace;
-    font-size: 14px; /* Set a consistent font size for the console */
-    line-height: 1.4; /* Add line spacing for readability */
+    font-size: 14px;
+    line-height: 1.4;
 }
 
-/* Console Log Entries */
 .console-box div {
-    all: unset; /* Reset inherited styles */
-    font-size: 14px; /* Force consistent font size */
-    font-family: "Courier New", Courier, monospace; /* Consistent console font */
-    color: #ffffff; /* Text color */
-    margin: 5px 0; /* Add space between log entries */
-    display: block; /* Ensure each entry is treated as a block element */
-    line-height: 1.4; /* Add line height for readability */
+    margin: 5px 0; /* Space between logs */
 }
+
+
 
 .button-container {
     text-align: center;
@@ -111,6 +99,74 @@ body {
     font-size: 14px;
     color: #ffffff;
     margin-bottom: 5px;
+}
+
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
+.back-button button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.back-button button:hover {
+    background-color: #666;
+}
+
+
+/* Connected Players Section */
+.connected-players-section {
+    margin-top: 20px;
+    text-align: left;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Players and Ban List Sections */
+.players-section, .ban-list-section {
+    margin-top: 20px;
+    text-align: left;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.player-list, .ban-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.player-list li, .ban-list li {
+    font-size: 16px;
+    margin: 5px 0; /* Space between players */
+    color: #dddddd;
+    cursor: pointer; /* Indicate that the list item is clickable */
+}
+
+.player-list li:hover {
+    color: #ff5555; /* Change color on hover for interactivity */
 }
 
 
