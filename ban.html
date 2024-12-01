@@ -17,20 +17,9 @@
         <div class="players-section">
             <p class="section-title">Connected Players</p>
             <ul class="player-list" id="playerList">
-                <li onclick="addToBanList('SrDev')">SrDev</li>
-                <li onclick="addToBanList('Muz_')">Muz_</li>
-                <li onclick="addToBanList('Space')">Space</li>
-                <li onclick="addToBanList('Luwuna')">Luwuna</li>
             </ul>
         </div>
 
-        <!-- Ban List Section -->
-        <div class="ban-list-section">
-            <p class="section-title">Ban List</p>
-            <ul class="ban-list" id="banList">
-                <!-- Banned players will be dynamically added here -->
-            </ul>
-        </div>
 
         <!-- Console Section -->
         <div class="console-section">
@@ -38,105 +27,6 @@
             <div class="console-box" id="consoleBox"></div>
         </div>
     </div>
-
-    <script>
-        // Function to add a player to the ban list and remove from the connected players list
-        function addToBanList(player) {
-            const banList = document.getElementById("banList");
-            const playerList = document.getElementById("playerList");
-            const consoleBox = document.getElementById("consoleBox");
-
-            // Check if the player is already banned
-            if ([...banList.children].some(item => item.textContent === player)) {
-                logToConsole(`${player} is already on the ban list.`);
-                return;
-            }
-
-            // Remove the player from the connected players list
-            const playerItem = [...playerList.children].find(item => item.textContent === player);
-            if (playerItem) {
-                playerItem.remove();
-            }
-
-            // Add the player to the ban list
-            const listItem = document.createElement("li");
-            listItem.textContent = player;
-            listItem.onclick = function() {
-                removeFromBanList(player);
-            };
-            banList.appendChild(listItem);
-
-            // Log the action in the console
-            logToConsole(`Added ${player} to the ban list.`);
-        }
-
-        // Function to remove a player from the ban list and return to the connected players list
-        function removeFromBanList(player) {
-            const banList = document.getElementById("banList");
-            const playerList = document.getElementById("playerList");
-            const consoleBox = document.getElementById("consoleBox");
-
-            // Remove the player from the ban list
-            const banItem = [...banList.children].find(item => item.textContent === player);
-            if (banItem) {
-                banItem.remove();
-            }
-
-            // Add the player back to the connected players list
-            const listItem = document.createElement("li");
-            listItem.textContent = player;
-            listItem.onclick = function() {
-                addToBanList(player);
-            };
-            playerList.appendChild(listItem);
-
-            // Log the action in the console
-            logToConsole(`Removed ${player} from the ban list.`);
-        }
-
-        // Function to log messages to the console box and sync with localStorage
-        function logToConsole(message) {
-            const consoleBox = document.getElementById("consoleBox");
-
-            // Create a new div element for each log entry
-            const newLog = document.createElement("div");
-            newLog.textContent = message;
-            consoleBox.appendChild(newLog);
-
-            // Get current logs from localStorage
-            let consoleLogs = JSON.parse(localStorage.getItem("consoleLogs")) || [];
-
-            // Add the new log message to the array
-            consoleLogs.push(message);
-
-            // Update the console logs in localStorage
-            localStorage.setItem("consoleLogs", JSON.stringify(consoleLogs));
-
-            // Automatically scroll to the bottom of the console
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-        }
-
-        // Call loadConsoleLogs on page load to display previous logs
-        window.onload = loadConsoleLogs;
-
-        // Function to load the stored logs into the console
-        function loadConsoleLogs() {
-            const consoleBox = document.getElementById("consoleBox");
-
-            // Get logs from localStorage
-            let consoleLogs = JSON.parse(localStorage.getItem("consoleLogs")) || [];
-
-            // Add each log entry to the console box
-            consoleLogs.forEach(log => {
-                const newLog = document.createElement("div");
-                newLog.textContent = log;
-                consoleBox.appendChild(newLog);
-            });
-
-            // Automatically scroll to the bottom of the console
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-        }
-    </script>
 
 <!-- Back Button -->
         <div class="back-button">
